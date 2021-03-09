@@ -5,17 +5,18 @@ import pool from "../config";
 export const createTransferencias = async (req, res) => {
   const { clabe, deposito } = req.body;
 
-  const query_cuenta = await pool.query("SELECT balance from clabe WHERE =$1", [
-    clabe,
-  ]);
+  const query_cuenta = await pool.query(
+    "SELECT balance from cuenta WHERE clabe=$1",
+    [clabe]
+  );
 
   let balance = query_cuenta.rows[0].balance;
   balance = parseFloat(balance);
   balance += parseFloat(deposito);
 
   const query_deposito = await pool.query(
-    "UPDATE cuenta SET balance = ($1) WHERE id=$2 RETURNING *",
-    [balance, id_cuenta]
+    "UPDATE cuenta SET balance = ($1) WHERE clabe=$2 RETURNING *",
+    [balance, clabe]
   );
 
   if (query_deposito.rows.length > 0) {
