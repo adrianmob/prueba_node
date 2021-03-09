@@ -1,4 +1,4 @@
-import { pool } from "../config";
+import pool from "../config";
 
 // Recibe como parametro email y password y regresa el usuario creado
 

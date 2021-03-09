@@ -1,4 +1,4 @@
-import { pool } from "../config";
+import pool from "../config";
 
 // Recibe como parametro clabe y deposito y regresa un mensaje de confirmacion de la transaccion
 

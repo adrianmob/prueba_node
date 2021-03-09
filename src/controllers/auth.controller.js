@@ -1,4 +1,4 @@
-import { pool } from "../config";
+import pool from "../config";
 import jwt from "jsonwebtoken";
 
 // Recibe como parametro correo y password y regresa el token de validacion
