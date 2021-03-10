@@ -7,7 +7,7 @@
     "test": "mocha --require @babel/register test/users.test.js",
     "dev": "nodemon src/index.js --exec babel-node",
     "start": "node build/index.js",
-    "build": "npm run clean && npm run babel-build",
+    "build": "npm run babel-build",
     "babel-build": "babel -d ./build ./src -s",
     "clean": "mkdir build"
   },
