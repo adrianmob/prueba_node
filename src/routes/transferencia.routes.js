@@ -2,8 +2,8 @@ import { Router } from "express";
 const router = Router();
 
 import * as tranCtrl from "../controllers/transferencia.controller";
-import { verifyToken } from "../middleware/authJwt";
+// import { verifyToken } from "../middleware/authJwt";
 
-router.post("/", verifyToken, tranCtrl.createTransferencias);
+router.post("/", tranCtrl.createTransferencias);
 
 export default router;
