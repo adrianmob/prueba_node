@@ -17,5 +17,7 @@ export const login = async (req, res) => {
     });
 
     res.json(token);
+  } else {
+    res.status(403).json("error no estas registrado");
   }
 };
