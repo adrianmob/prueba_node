@@ -5,19 +5,26 @@ import jwt from "jsonwebtoken";
 
 export const login = async (req, res) => {
   const { email, password } = req.body;
-  const response = await pool.query(
-    "SELECT * from users WHERE email = $1 AND password = $2",
-    [email, password]
-  );
 
-  if (response.rows.length > 0) {
-    const user = response.rows[0];
-    const token = jwt.sign({ id: user.id }, "api-auth", {
-      expiresIn: 86400,
-    });
+  try {
+    const response = await pool.query(
+      "SELECT * from users WHERE email = $1 AND password = $2",
+      [email, password]
+    );
 
-    res.json(token);
-  } else {
-    res.status(403).json("error no estas registrado");
+    console.log(response);
+
+    if (response.rows.length > 0) {
+      const user = response.rows[0];
+      const token = jwt.sign({ id: user.id }, "api-auth", {
+        expiresIn: 86400,
+      });
+
+      res.json(token);
+    } else {
+      res.status(403).json("error no estas registrado");
+    }
+  } catch (error) {
+    res.status(403).json(error);
   }
 };
